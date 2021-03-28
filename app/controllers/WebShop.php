@@ -51,13 +51,18 @@ class WebShop{
     ]) );  */
 
   //    echo "Power Panel - WebShop";
-
+    /*
     $rows=$this->db->exec('SELECT id,name FROM test ORDER BY id DESC');
     
     foreach( $rows as $indice=>$row ):
       echo $row["name"]."<br>";
     endforeach;  
 
+    */
+
+    $view = new View();
+
+    echo $view->render('webshop/welcome.htm');  
 
   }
 
