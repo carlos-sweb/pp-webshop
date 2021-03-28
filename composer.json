@@ -1,0 +1,15 @@
+{
+    "name": "carlos/pp-webshop",
+    "description": "Simple Webshop from powerpanel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "carlos-sweb",
+            "email": "c4rl0sill3sc4@gmail.com"
+        }
+    ],
+    "require": {
+        "bcosca/fatfree-core": "^3.7"
+    }
+}
