@@ -5,6 +5,9 @@ require __DIR__.'/../../vendor/autoload.php';
 
 class Install{
 
+
+  protected $f3;
+
   function __construct($f3){
 
 
@@ -32,21 +35,35 @@ class Install{
         );
   }
 
-  public function stepOne($f3){
+  public function stepOne( $f3 ){
         
-    $view = new View;
+    $f3->set("title","WebShop - Paso 1");
 
-    echo $this->minifer($view->render("install/step-one.htm"));
+    $f3->set("css",array(
+      "/css/login.css",
+      "/css/base.css"
+    ));
 
+    $f3->set("formId","step-one");
+    $f3->set("form","install/step-one.htm");
+
+    echo $this->minifer(Template::instance()->render('install/template.php'));
 
   }
 
-  public function stepTwo($f3){
+  public function stepTwo( $f3 ){
         
-    $view = new View;
+    $f3->set("title","WebShop - Paso 2");
 
-    echo $this->minifer($view->render("install/step-two.htm"));
+    $f3->set("css",array(
+      "/css/login.css",
+      "/css/base.css"
+    ));
 
+    $f3->set("formId","step-two");
+    $f3->set("form","install/step-two.htm");
+
+    echo $this->minifer(Template::instance()->render('install/template.php'));
 
   }
 
@@ -54,7 +71,7 @@ class Install{
         
     $view = new View;
 
-    echo $this->minifer($view->render("install/step-three.htm"));
+    //echo $this->minifer($view->render("install/step-three.htm"));
 
 
   }
