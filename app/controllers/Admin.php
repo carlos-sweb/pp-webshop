@@ -28,12 +28,10 @@ class Admin{
     $view=new View;   
 
     echo $this->minifer($view->render("template.htm"));
-
-    echo "J";
   
-    
-
   }
+
+
 
 
 }

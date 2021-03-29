@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div class="container is-flex is-flex-direction-row is-justify-content-center" >	
+<div style="padding-left:10px;padding-right:10px;" class="container is-flex is-flex-direction-row is-justify-content-center" >	
 	<div id="<?= ($formId) ?>"  class="card">  
 	  <div  class="card-content">    
 	      <div class="media-content">	      

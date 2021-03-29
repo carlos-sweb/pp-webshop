@@ -6,27 +6,17 @@ require __DIR__.'/../../vendor/autoload.php';
 class WebShop{
 
   function __construct($f3){
-
-
-    $db=new DB\SQL(
+    
+    $db = null;
+    try{
+      $db=new DB\SQL(
       $f3->get('db_dns') . $f3->get('db_name'),
       $f3->get('db_user'),
-      $f3->get('db_pass')
-    );
+      $f3->get('db_pass'));
+    }catch( \PDOException $e ){
+      $f3->reroute('install/step-one');
+    }
 
-    $this->db = $db;
-
-      /*
-      $this->css_base = [          
-          'flexboxgrid.min.css',
-          'tailwind.min.css',
-          'font.css',
-          'style.css',          
-      ];*/
-
-  		//$this->loader = new \Twig\Loader\FilesystemLoader(__DIR__."/../views");
-
-  		//$this->twig = new \Twig\Environment($this->loader);
   }
   
   public function minifer($code){
@@ -64,6 +54,10 @@ class WebShop{
 
     echo $view->render('webshop/welcome.htm');  
 
+    
+  
+
+
   }
 
 
@@ -73,6 +67,12 @@ class WebShop{
 
   }
 
+
+  public function error( $f3 ){
+
+    $f3->reroute('/');
+
+  }
 
 }
 
