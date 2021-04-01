@@ -6,10 +6,9 @@
 	<link rel="icon" type="image/png" href="/favicon.png">
 	<link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="/node_modules/bulma/css/bulma.min.css">
-
 	<?php foreach (($css?:[]) as $link): ?>
     	<link rel="stylesheet" href="<?= ($link) ?>">
-	<?php endforeach; ?>	
+	<?php endforeach; ?>
 	<title><?= ($title) ?></title>
 </head>
 <body>
@@ -22,7 +21,6 @@
 		</div>   
 	</div>
 </div>
-
 </div>
 </body>
 </html>

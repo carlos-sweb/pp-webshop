@@ -1,11 +1,10 @@
 <h4 class="title is-4">Instalación - WebShop</h2>
-<hr>	
-<h5 class="title is-5">Administrador</h5>		
-
-<form action="/" method="POST">
-<div class="field">	  
+<hr>
+<h5 class="title is-5">Administrador</h5>
+<form action="/install/step-two" method="POST">
+<div class="field">
   <p class="control has-icons-left has-icons-right">
-    <input id="user" class="input" type="text" placeholder="Usuario">
+    <input id="user" name="user" class="input" type="text" placeholder="Usuario">
     <span class="icon is-small is-left">
       <i class="fas fa-user"></i>
     </span>
@@ -16,7 +15,7 @@
 </div>
 <div class="field">	  
   <p class="control has-icons-left">	  	
-    <input id="password" class="input" type="password" placeholder="Contraseña" >
+    <input id="password" class="input" name="password" type="password" placeholder="Contraseña" >
     <span class="icon is-small is-left">
       <i class="fas fa-lock"></i>
     </span>

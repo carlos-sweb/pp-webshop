@@ -5,10 +5,10 @@
 	<hr>	
 	<h5 class="title is-5">Base de Datos</h5>		
 
-	<form action="/" method="POST">
+	<form action="/install/step-one" method="POST">
 	<div class="field">	  
 	  <p class="control has-icons-left has-icons-right">
-	    <input id="user" class="input" type="text" placeholder="Usuario">
+	    <input name="user" id="user" class="input" type="text" placeholder="Usuario">
 	    <span class="icon is-small is-left">
 	      <i class="fas fa-user"></i>
 	    </span>
@@ -19,7 +19,7 @@
 	</div>
 	<div class="field">	  
 	  <p class="control has-icons-left has-icons-right">
-	    <input id="database" class="input" type="text" placeholder="Base de Datos">
+	    <input name="dbname" id="dbname" class="input" type="text" placeholder="Base de Datos">
 	    <span class="icon is-small is-left">
 	      <i class="fas fa-database"></i>
 	    </span>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="field">	  
 	  <p class="control has-icons-left">	  	
-	    <input id="password" class="input" type="password" placeholder="Contraseña" >
+	    <input id="password" name="password" class="input" type="text" placeholder="Contraseña" >
 	    <span class="icon is-small is-left">
 	      <i class="fas fa-lock"></i>
 	    </span>

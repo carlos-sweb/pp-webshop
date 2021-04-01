@@ -10,6 +10,7 @@
         }
     ],
     "require": {
-        "bcosca/fatfree-core": "^3.7"
+        "bcosca/fatfree-core": "^3.7",
+        "symfony/filesystem": "^5.2"
     }
 }

@@ -2,21 +2,28 @@
 
 require __DIR__.'/../../vendor/autoload.php';
 
-
 class WebShop{
 
-  function __construct($f3){
+  function __construct($f3){    
     
-    $db = null;
     try{
-      $db=new DB\SQL(
+      
+      $this->db = new DB\SQL(
       $f3->get('db_dns') . $f3->get('db_name'),
       $f3->get('db_user'),
       $f3->get('db_pass'));
-    }catch( \PDOException $e ){
-      $f3->reroute('install/step-one');
-    }
 
+      $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+      
+
+    }catch( \PDOException $e ){
+
+      $this->db = null;
+
+      $f3->reroute('install/step-one');
+
+    }
   }
   
   public function minifer($code){
@@ -34,6 +41,21 @@ class WebShop{
   }
 
   public function home($f3){
+
+    try{      
+      
+      $f3->set("settings",$this->db->exec("SELECT * from ws_settings "));
+
+    }catch( \PDOException $e ){
+
+      $f3->reroute("/install/step-one");
+    }
+    
+    
+
+    
+
+
     
    /* echo $this->minifer( $this->twig->render('home.html',[
       "css"=>$this->css_base,
@@ -48,11 +70,9 @@ class WebShop{
       echo $row["name"]."<br>";
     endforeach;  
 
-    */
+    */    
 
-    $view = new View();
-
-    echo $view->render('webshop/welcome.htm');  
+    echo $this->minifer(Template::instance()->render('webshop/welcome.htm'));
 
     
   
@@ -75,5 +95,4 @@ class WebShop{
   }
 
 }
-
 ?>
