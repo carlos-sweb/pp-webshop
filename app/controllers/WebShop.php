@@ -2,9 +2,13 @@
 
 require __DIR__.'/../../vendor/autoload.php';
 
+use Mobile_Detect;
+
 class WebShop{
 
-  function __construct($f3){    
+  function __construct($f3){   
+
+    $this->detect = new Mobile_Detect; 
     
     try{
       
@@ -50,33 +54,8 @@ class WebShop{
 
       $f3->reroute("/install/step-one");
     }
-    
-    
-
-    
-
-
-    
-   /* echo $this->minifer( $this->twig->render('home.html',[
-      "css"=>$this->css_base,
-      "active"=>$f3->get("PARAMS.0")
-    ]) );  */
-
-  //    echo "Power Panel - WebShop";
-    /*
-    $rows=$this->db->exec('SELECT id,name FROM test ORDER BY id DESC');
-    
-    foreach( $rows as $indice=>$row ):
-      echo $row["name"]."<br>";
-    endforeach;  
-
-    */    
-
-    echo $this->minifer(Template::instance()->render('webshop/welcome.htm'));
-
-    
   
-
+    echo $this->minifer(Template::instance()->render('webshop/welcome.htm'));
 
   }
 
@@ -88,11 +67,24 @@ class WebShop{
   }
 
 
+  /*
+  *@name error
+  *@description : Funcion que captura los errores de URL
+  */
   public function error( $f3 ){
-
-    $f3->reroute('/');
-
+      
+      while (ob_get_level()){
+          ob_end_clean();
+      }
+            
+      if( $f3->get("ERROR.code") == '404' ){        
+          $f3->reroute("/");
+      }else{
+          echo "<h1>".$f3->get("ERROR.code")."</h1>";
+          echo "<h3>".$f3->get("ERROR.text")."</h3>";
+      }
   }
+
 
 }
 ?>

@@ -11,6 +11,7 @@
     ],
     "require": {
         "bcosca/fatfree-core": "^3.7",
-        "symfony/filesystem": "^5.2"
+        "symfony/filesystem": "^5.2",
+        "mobiledetect/mobiledetectlib": "^2.8"
     }
 }

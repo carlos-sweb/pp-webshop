@@ -6,8 +6,6 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 use Symfony\Component\Filesystem\Filesystem;
 
-
-
 class Install{
 
   protected $f3;
@@ -63,7 +61,7 @@ class Install{
 
   public function stepOneForm( $f3 ){
 
-    $vtr ='<?php
+    $str_config ='<?php
 
     return [
 
@@ -104,9 +102,9 @@ class Install{
       $filesystem = new Filesystem();
       try {
           
-          $filesystem->touch(__DIR__."/../config/db.php");
+          $filesystem->touch( __DIR__."/../config/db.php" );
 
-          $filesystem->dumpFile(__DIR__."/../config/db.php",$vtr);
+          $filesystem->dumpFile( __DIR__."/../config/db.php" , $str_config );
         
       } catch (IOExceptionInterface $exception) {
 
@@ -119,25 +117,31 @@ class Install{
 
   }
 
-  public function stepTwo( $f3 ){      
-      if( $this->db == null ){
-        $f3->reroute("/install/step-one");
-      }else{        
+public function stepTwo( $f3 ){ 
+
+    if( $this->db == null ){
+      $f3->reroute("/install/step-one");
+    }else{
+
+      $exists_users = count($this->db->exec("SELECT * FROM `ws_user`"))  == 0 ? false : true;
+      if($exists_users){
+        $f3->reroute("/install/step-three");
+      }else{
         $f3->set("title","WebShop - Paso 2");
         $f3->set("css",array(
-          "/css/login.css",
-          "/css/base.css"
+        "/css/login.css",
+        "/css/base.css"
         ));
         $f3->set("formId","step-two");
         $f3->set("form","install/step-two.htm");
         echo $this->minifer(Template::instance()->render('install/template.htm'));
-      }
-  }
+      }      
+    }
+}
 
-  public function stepTwoForm( $f3 ){
+public function stepTwoForm( $f3 ){
 
-
-      $ws_user = "CREATE TABLE IF NOT EXISTS `ws_user` (
+$ws_user = "CREATE TABLE IF NOT EXISTS `ws_user` (
                   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                   `name` varchar(256) NOT NULL,
                   `mail` varchar(256) NOT NULL UNIQUE,
@@ -145,20 +149,48 @@ class Install{
                   `bloked` tinyint(1) NOT NULL DEFAULT '0',
                   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                   `updated_at` timestamp NULL DEFAULT NULL
-                  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";      
+                  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";  
 
-          
-      $this->db->exec($ws_user);
+$this->db->exec($ws_user);
 
+$exists_users = count($this->db->exec("SELECT * FROM `ws_user`"))  == 0 ? false : true;
+      if( !$exists_users ){
+
+$create_user = $this->db->exec("INSERT INTO ws_user(name,mail,password) SELECT * FROM ( SELECT  :name as name ,:mail as mail , :password as password ) as wsuser;",
+  array(
+    ':name'=>$f3->get("POST.name"),
+    ':mail'=>$f3->get("POST.mail"),
+    ':password'=>$f3->get("POST.password"),
+  )
+);
+  
+    $f3->reroute("/install/step-three");
+
+
+
+      }else{
+          $f3->reroute("/install/step-three");
+      }
+
+      /*
+
+      $crypt = \Bcrypt::instance();
+
+      echo $crypt->hash("c4rl0sill3sc4",$f3->get("hash"));      
+
+    */
+
+      /*
       try{
 
-        $this->db->exec("INSERT INTO ws_user(name,mail,password) VALUES('carlos','c4rl0sill3sc4@gmai.com','dedoekdokedoe')");
+        $this->db->exec("INSERT INTO ws_user(name,mail,password) VALUES('carlos','c4rl0sill3sc4@gmai.com','". $crypt->hash("clave",$f3->get("hash"))."')");
 
       }catch( \PDOStatement $e ){
 
         echo $e->getCode();
 
       }
+      */
       
 
       /*
@@ -176,9 +208,7 @@ class Install{
 
       };*/
 
-      //echo $user." => ".$pass;
-
-      echo "Hi";
+      //echo $user." => ".$pass;      
 
   }
 
@@ -197,13 +227,7 @@ class Install{
 
     echo $this->minifer(Template::instance()->render('install/template.htm'));  
 
-    
-
   }
-
-
-
-
 
 }
 

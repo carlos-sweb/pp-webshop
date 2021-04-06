@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9d971eace095252a52872fb43d690ee71d4d2d1a',
+    'reference' => '216c2dfb55b45dbb50604c7945ec0eb402dee5ca',
     'name' => 'carlos/pp-webshop',
   ),
   'versions' => 
@@ -27,7 +27,16 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9d971eace095252a52872fb43d690ee71d4d2d1a',
+      'reference' => '216c2dfb55b45dbb50604c7945ec0eb402dee5ca',
+    ),
+    'mobiledetect/mobiledetectlib' => 
+    array (
+      'pretty_version' => '2.8.37',
+      'version' => '2.8.37.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9841e3c46f5bd0739b53aed8ac677fa712943df7',
     ),
     'symfony/filesystem' => 
     array (
