@@ -19,8 +19,7 @@ class WebShop{
 
       $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-      
-
+    
     }catch( \PDOException $e ){
 
       $this->db = null;
@@ -45,7 +44,7 @@ class WebShop{
   }
 
   public function home($f3){
-
+    
     try{      
       
       $f3->set("settings",$this->db->exec("SELECT * from ws_settings "));
@@ -84,7 +83,5 @@ class WebShop{
           echo "<h3>".$f3->get("ERROR.text")."</h3>";
       }
   }
-
-
 }
 ?>

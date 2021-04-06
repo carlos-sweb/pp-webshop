@@ -48,7 +48,7 @@ class Install{
     if( $this->db == null ){
       $f3->set("title","WebShop - Paso 1");
       $f3->set("css",array(
-        "/css/login.css",
+        "/css/install.css",
         "/css/base.css"
       ));
       $f3->set("formId","step-one");
@@ -129,7 +129,7 @@ public function stepTwo( $f3 ){
       }else{
         $f3->set("title","WebShop - Paso 2");
         $f3->set("css",array(
-        "/css/login.css",
+        "/css/install.css",
         "/css/base.css"
         ));
         $f3->set("formId","step-two");
@@ -218,7 +218,7 @@ $create_user = $this->db->exec("INSERT INTO ws_user(name,mail,password) SELECT *
     $f3->set("title","WebShop - Paso 3");
 
     $f3->set("css",array(
-      "/css/login.css",
+      "/css/install.css",
       "/css/base.css"
     ));
 

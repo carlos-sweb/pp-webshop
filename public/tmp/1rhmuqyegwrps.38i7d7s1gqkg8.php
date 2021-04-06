@@ -9,18 +9,17 @@
 	<title>WebShop</title>
 	<style>html{height:100%;overflow:auto;}body{height:100%;}</style>	
 </head>
-<body style="display:flex;flex-direction:row;justify-content:center;align-content:center;background-color:#dedede;"  >
+<body style="display:flex;flex-direction:row;justify-content:center;align-content:center;"  >
 <div class="container is-flex is-flex-direction-row is-justify-content-center" >	
 	<div id="step-two" class="card">  
 	  <div class="card-content">    
 	      <div class="media-content">	        	
 	<h4 class="title is-4">Bienvenido - WebShop</h2>
 	<hr>	
-	<h5 class="title is-5">Administrador</h5>		
+		
+	<a href="/login" class="button is-info is-fullwidth">Administrar</a>			
 
-	
-
-	      </div>
+		</div>
 	    </div>   
 	  </div>
 	</div>
